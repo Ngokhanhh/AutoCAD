@@ -2,7 +2,7 @@ import pandas as pd
 import argparse
 import os
 import sys
-import json # Thêm thư viện json
+import json 
 
 def main():
     if sys.stdout.encoding != 'utf-8':
