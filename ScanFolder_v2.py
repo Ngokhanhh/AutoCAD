@@ -111,7 +111,8 @@ def scan_and_analyze(folder_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scan folders and export peak monthly $P_{max}$ to JSON.")
-    parser.add_argument("folder", help="Root folder path to scan")
+    parser.add_argument("folder", nargs='+', help="Root folder path to scan")
     
     args = parser.parse_args()
-    scan_and_analyze(args.folder)
+    full_folder_path = " ".join(args.folder)
+    scan_and_analyze(full_folder_path)
