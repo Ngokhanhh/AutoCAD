@@ -36,12 +36,13 @@ def get_excel_file_paths(root_path):
 def main():
     # 1. Thiết lập đối số dòng lệnh
     parser = argparse.ArgumentParser(description="Scan folder and collect data using subprocess.")
-    parser.add_argument("folder_path", help="Path to the root folder to scan")
+    parser.add_argument("folder_path", nargs='+', help="Path to the root folder to scan")
     args = parser.parse_args()
 
     # 2. Lấy danh sách file excel
-    print(f"Scanning folder: {args.folder_path}...")
-    excel_files = get_excel_file_paths(args.folder_path)
+    full_folder_path = " ".join(args.folder_path)
+    print(f"Scanning folder: {full_folder_path}...")
+    excel_files = get_excel_file_paths(full_folder_path)
 
     if not excel_files:
         print("No matching Excel files found.")
@@ -84,8 +85,8 @@ def main():
         # Sắp xếp lại TT (Thứ tự) cho toàn bộ bảng tổng
         final_df['TT'] = range(1, len(final_df) + 1)
         
-        print("\n--- Final Aggregated Data ---")
-        print(final_df.to_string(index=False))
+        # print("\n--- Final Aggregated Data ---")
+        # print(final_df.to_string(index=False))
         
         # Lưu kết quả tổng hợp
         final_df.to_csv("Aggregated_Power_Data.csv", index=False)
